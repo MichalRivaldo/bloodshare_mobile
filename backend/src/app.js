@@ -16,6 +16,9 @@ const bloodRequestRoutes = require('./routes/bloodRequestRoutes');
 const responseRoutes     = require('./routes/responseRoutes');
 const { responseRouter } = require('./routes/responseRoutes');
 const notificationRoutes = require('./routes/notificationRoutes');
+const matchRoutes        = require('./routes/matchRoutes');
+const eventRoutes        = require('./routes/eventRoutes');
+const donationRoutes     = require('./routes/donationRoutes');
 
 // ── App ─────────────────────────────────────────────────────
 const app  = express();
@@ -39,6 +42,9 @@ app.use('/api/requests',      bloodRequestRoutes);
 app.use('/api/requests',      responseRoutes);      // POST /api/requests/:id/respond
 app.use('/api/responses',     responseRouter);      // PATCH /api/responses/:id
 app.use('/api/notifications', notificationRoutes);
+app.use('/api/events',       eventRoutes);
+app.use('/api/donations',    donationRoutes);
+app.use('/api',              matchRoutes);           // GET /api/requests/:id/matches, GET /api/stats
 
 // ── 404 & Error Handler (harus di paling bawah) ──────────────
 app.use(notFoundHandler);
