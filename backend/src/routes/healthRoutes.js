@@ -11,3 +11,4 @@ const router = Router();
 router.get('/', healthCheck);
 
 module.exports = router;
+

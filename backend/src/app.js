@@ -28,8 +28,13 @@ app.use(cors({
 // ── API Routes ───────────────────────────────────────────────
 app.use('/api/health', healthRoutes);
 
+const authRoutes = require('./routes/authRoutes');
+const userRoutes = require('./routes/userRoutes');
+
+app.use('/api/auth', authRoutes);
+app.use('/api/users', userRoutes);
+
 // Tambahkan route lain di sini seiring perkembangan tahap:
-// app.use('/api/auth',          authRoutes);
 // app.use('/api/blood-requests', bloodRequestRoutes);
 // app.use('/api/events',         eventRoutes);
 
@@ -45,3 +50,4 @@ app.listen(PORT, () => {
 });
 
 module.exports = app;
+

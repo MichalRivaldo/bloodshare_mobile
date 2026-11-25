@@ -40,3 +40,4 @@ function createError(message, statusCode = 500) {
 }
 
 module.exports = { sendSuccess, sendError, createError };
+

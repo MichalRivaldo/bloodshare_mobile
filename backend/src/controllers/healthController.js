@@ -27,3 +27,4 @@ async function healthCheck(req, res, next) {
 }
 
 module.exports = { healthCheck };
+

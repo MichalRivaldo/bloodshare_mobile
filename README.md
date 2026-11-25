@@ -140,3 +140,4 @@ Proyek ini masih dalam tahap pengembangan aktif. Silakan buka _issue_ untuk mela
 ## 📄 Lisensi
 
 MIT License — bebas digunakan dan dimodifikasi.
+

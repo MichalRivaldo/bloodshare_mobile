@@ -136,3 +136,4 @@ VALUES
   (10, 'Pengguna baru terdaftar',
        'Fitri Handayani baru saja mendaftar dan menunggu verifikasi.',
        'sistem', NULL, NULL, 0);
+
