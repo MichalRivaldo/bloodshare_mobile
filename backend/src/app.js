@@ -9,7 +9,13 @@ const cors    = require('cors');
 const { errorHandler, notFoundHandler } = require('./middleware/errorHandler');
 
 // ── Routes ──────────────────────────────────────────────────
-const healthRoutes = require('./routes/healthRoutes');
+const healthRoutes       = require('./routes/healthRoutes');
+const authRoutes         = require('./routes/authRoutes');
+const userRoutes         = require('./routes/userRoutes');
+const bloodRequestRoutes = require('./routes/bloodRequestRoutes');
+const responseRoutes     = require('./routes/responseRoutes');
+const { responseRouter } = require('./routes/responseRoutes');
+const notificationRoutes = require('./routes/notificationRoutes');
 
 // ── App ─────────────────────────────────────────────────────
 const app  = express();
@@ -19,24 +25,20 @@ const PORT = process.env.PORT || 3000;
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// CORS — izinkan semua origin saat development; batasi di production
+// CORS
 app.use(cors({
   origin:      process.env.NODE_ENV === 'production' ? process.env.ALLOWED_ORIGINS : '*',
   credentials: true,
 }));
 
 // ── API Routes ───────────────────────────────────────────────
-app.use('/api/health', healthRoutes);
-
-const authRoutes = require('./routes/authRoutes');
-const userRoutes = require('./routes/userRoutes');
-
-app.use('/api/auth', authRoutes);
-app.use('/api/users', userRoutes);
-
-// Tambahkan route lain di sini seiring perkembangan tahap:
-// app.use('/api/blood-requests', bloodRequestRoutes);
-// app.use('/api/events',         eventRoutes);
+app.use('/api/health',        healthRoutes);
+app.use('/api/auth',          authRoutes);
+app.use('/api/users',         userRoutes);
+app.use('/api/requests',      bloodRequestRoutes);
+app.use('/api/requests',      responseRoutes);      // POST /api/requests/:id/respond
+app.use('/api/responses',     responseRouter);      // PATCH /api/responses/:id
+app.use('/api/notifications', notificationRoutes);
 
 // ── 404 & Error Handler (harus di paling bawah) ──────────────
 app.use(notFoundHandler);
@@ -50,4 +52,3 @@ app.listen(PORT, () => {
 });
 
 module.exports = app;
-
